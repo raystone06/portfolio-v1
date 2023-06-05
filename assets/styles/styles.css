@@ -1,0 +1,624 @@
+/* -------------- Paramètres généraux -------------- */
+@import url("https://fonts.googleapis.com/css2?family=Rubik+Pixels&family=Silkscreen:wght@400;700&display=swap");
+
+@font-face {
+	font-family: "mario";
+	src: url(../fonts/Mario-Kart-DS.ttf);
+}
+
+*,
+::before,
+::after {
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+	/* reset pour les marges sur les éléments*/
+}
+
+*::selection {
+	color: #fefeff;
+	background: #000101;
+	/* pour modifier la couleur quand on selectione le 
+  texte (avec le curseur) -par defaut c'est blanc/bleu */
+}
+
+html {
+	scroll-behavior: smooth;
+	/* pour rendre le scroll doux 
+  (notament quand on clique sur les liens)  */
+}
+
+body {
+	font-family: "mario";
+	background: #000101;
+	color: #fefeff;
+	transition: 0.7s ease-in-out;
+	/* transition pour le changement de couleur 
+  du body avec lokomotive.js */
+}
+
+.wrapper {
+	perspective: 900px;
+}
+
+.appear {
+	opacity: 0;
+	transform: translateY(100%) rotateX(-80deg);
+	transform-origin: top center;
+	transform-style: preserve-3d;
+	transition: 0.8s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.appear.is-inview {
+	opacity: 1;
+	transform: none;
+	transition-delay: 1s;
+}
+
+
+h2 {
+	font-size: calc(3rem + 5vw);
+	/* la taille des h2 avec calc() nen additionant la valeur 
+    absolue et la valeur relative cela nous permet de definir 
+    une taille minimal pour quand la valeur relative seras trop petite*/
+	color: #7067d0;
+	font-family: "Silkscreen", cursive;
+	letter-spacing: 3px;
+	text-align: center;
+	text-shadow: -4px 3px 0 #3a50d9, -14px 7px 0 #0a0e27;
+}
+
+.title {
+	font-size: calc(1.4rem + 3.7vw);
+	letter-spacing: 0;
+}
+
+span {
+	display: inline-block;
+}
+
+a,
+a:visited {
+	cursor: pointer;
+	position: relative;
+	text-decoration: none;
+	color: #fefeff;
+	transition: 0.1s linear;
+	/* transition pour les hover  de soulignement au after */
+	font-size: calc(0.8rem + 0.8vw);
+	/* responsive du texte */
+}
+
+a:hover {
+	transform: scale(1.04);
+	/* color: #d9d9d9; */
+}
+
+a.contact {
+	animation: blink 2s infinite alternate;
+}
+
+@keyframes blink {
+	0%,
+	18%,
+	22%,
+	25%,
+	53%,
+	57%,
+	100% {
+		text-shadow: 0 0 0.5vw #e374ff, 0.1vw 0 0.5vw #d874ff,
+			0.3vw 0 0.5vw #df74ff, 0 0 1.2vw #be31ff, 0.1vw 0 1.2vw #c131ff,
+			0.3vw 0 1.2vw #c531ff, 0 0 3vw #a504fb, 0.1vw 0 3vw #a504fb,
+			0.3vw 0 3vw #fb04e2;
+	}
+
+	20%,
+	24%,
+	55% {
+		text-shadow: none;
+	}
+}
+
+a.contact:hover {
+	transform: scale(1.1);
+}
+
+.funky-base,
+.funky-letter {
+	color: transparent;
+	/* font-weight: bold; */
+	font-family: "Silkscreen", cursive;
+	font-size: calc(1rem + 0.6vw);
+}
+
+.funky-letter {
+	position: absolute;
+	top: 0;
+	left: 0;
+	-webkit-animation: funky 1.5s ease-in-out infinite;
+	animation: funky 1.5s ease-in-out infinite;
+	/* text-shadow: -1px -1px 0 #222, 1px -1px 0 #222, -1px 1px 0 #222, 1px 1px 0 #222, 4px 4px 0 rgba(0, 0, 0, 0.2); */
+}
+
+@keyframes funky {
+	50% {
+		transform: translateY(10px);
+	}
+}
+
+.fl-1 {
+	-webkit-animation-delay: -0.1s;
+	animation-delay: -0.1s;
+	color: #d49c3d;
+}
+
+.fl-2 {
+	-webkit-animation-delay: -0.2s;
+	animation-delay: -0.2s;
+	color: #d14b3d;
+}
+
+.fl-3 {
+	-webkit-animation-delay: -0.3s;
+	animation-delay: -0.3s;
+	color: #cf52eb;
+}
+
+.fl-4 {
+	-webkit-animation-delay: -0.4s;
+	animation-delay: -0.4s;
+	color: #44a3f7;
+}
+
+.fl-5 {
+	-webkit-animation-delay: -0.5s;
+	animation-delay: -0.5s;
+	color: #5acb3c;
+}
+
+.fl-6 {
+	-webkit-animation-delay: -0.6s;
+	animation-delay: -0.6s;
+	color: #debf40;
+}
+
+.fl-7 {
+	-webkit-animation-delay: -0.7s;
+	animation-delay: -0.7s;
+	color: #fff;
+}
+
+.img {
+	height: 395px;
+	width: 100vw;
+	max-width: 500px;
+	margin: 0 auto;
+	filter: grayscale(100%);
+	/* pour mettre un filtre griser sur l'image  */
+	transform: 1.6s;
+	transition: 1.6s;
+}
+
+.img:hover {
+	filter: grayscale(10%);
+}
+
+.line {
+	height: 2px;
+	width: 70%;
+	margin: 0 auto;
+	background: #000101;
+	transform-origin: left;
+	transition-delay: 0.65s;
+	opacity: 0;
+	transform: scalex(0);
+	transition: 1s cubic-bezier(0.77, 0, 0.18, 1);
+}
+.line-last {
+	background: #fefeff;
+}
+
+.line-wrapper.is-inview .line {
+	opacity: 1;
+	transform: scalex(1);
+}
+
+/* --------- Paramètres par ordre d'apparition --------- */
+
+/* headers et ses enfants */
+header {
+	height: 100vh;
+	position: relative;
+	padding: 2vw 2vw 0;
+	/* background: url(../img/bg-3.gif); */
+	background: url(../img/header-bg.gif);
+	/* background: url(https://wallpaperaccess.com/full/8351153.gif); */
+	/* background: url(https://wallpaperaccess.com/full/8351160.gif); */
+	/* background: url(https://cdna.artstation.com/p/assets/images/images/049/456/834/original/moises-dimas-night-of-falling-stars-hd-2-wallpaper.gif?1652540104); */
+	/* background: url(https://i.pinimg.com/originals/4e/cc/74/4ecc7496e5ff072f03c0c884e9faa98e.gif); */
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+	position: relative;
+}
+
+header .filter {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100vh;
+	width: 100%;
+	background-color: #00010184;
+	backdrop-filter: blur(1px) brightness(0.9) contrast(110%);
+}
+
+.links {
+	display: flex;
+	justify-content: space-between;
+}
+
+#h1-wrapper {
+	transition-delay: 0.3s;
+}
+
+h1 {
+	font-size: calc(4rem + 8vw);
+	margin-top: calc(15px + 15vh );
+	/* font-family: "font-bold"; */
+	letter-spacing: 10px;
+	color: #fefeff;
+	mix-blend-mode: exclusion;
+	font-family: "mario", cursive;
+	text-transform: lowercase;
+	font-weight: bold;
+	/* color: #92a5de; */
+	text-shadow: 0px 0px 0 #899cd5, 1px 1px 0 #8194cd, 2px 2px 0 #788bc4,
+		3px 3px 0 #6f82bb, 4px 4px 0 #677ab3, 5px 5px 0 #5e71aa,
+		6px 6px 0 #5568a1, 7px 7px 0 #4c5f98, 8px 8px 0 #445790,
+		9px 9px 0 #3b4e87, 10px 10px 0 #32457e, 11px 11px 0 #2a3d76,
+		12px 12px 0 #21346d, 13px 13px 0 #182b64, 14px 14px 0 #0f225b,
+		15px 15px 0 #071a53, 16px 16px 0 #02114a, 17px 17px 0 #0b0841,
+		18px 18px 0 #130039, 19px 19px 0 #1c0930, 20px 20px 0 #251227,
+		21px 21px 20px rgba(0, 0, 0, 1), 21px 21px 1px rgba(0, 0, 0, 0.5),
+		0px 0px 20px rgba(0, 0, 0, 0.2);
+}
+
+header h2 {
+	font-size: calc(1rem + 3vw);
+	margin: 18px 0;
+	text-align: left;
+	font-family: "Silkscreen", cursive;
+	/* font-family: "mario"; */
+	text-transform: lowercase;
+
+	color: #d9d9d9;
+	color: #9c9c9c;
+	/* color: #bb2211da; */
+	/* 
+background: #edde9c;
+text-shadow: 0 1px 0px #378ab4, 1px 0 0px #5dabcd, 1px 2px 1px #378ab4, 2px 1px 1px #5dabcd, 2px 3px 2px #378ab4, 3px 2px 2px #5dabcd, 3px 4px 2px #378ab4, 4px 3px 3px #5dabcd, 4px 5px 3px #378ab4, 5px 4px 2px #5dabcd, 5px 6px 2px #378ab4, 6px 5px 2px #5dabcd, 6px 7px 1px #378ab4, 7px 6px 1px #5dabcd, 7px 8px 0px #378ab4, 8px 7px 0px #5dabcd;*/
+	/* text-shadow: 2px 2px 0 #bcbcbc, 4px 4px 0 #9c9c9c; */
+	text-shadow: -4px 3px 0 #3a50d9, -14px 7px 0 #0a0e27;
+}
+
+#h2-1 {
+	transition-delay: 0.9s;
+}
+
+#h2-2 {
+	transition-delay: 1.2s;
+}
+
+.scroll-wrapper {
+	position: absolute;
+	left: 90%;
+	/* transform: translateX(-50%); */
+	bottom: 3.5vw;
+	color: #d9d9d9;
+}
+
+.mouse {
+	width: 26px;
+	height: 40px;
+	border-radius: 15px;
+	border: 2px solid #fefeff;
+	position: relative;
+	overflow: hidden;
+}
+.mouse .roll {
+	position: absolute;
+	top: 8px;
+	left: 50%;
+	width: 4px;
+	margin-left: -2px;
+	height: 4px;
+	border-radius: 4px;
+	background: #fefeff;
+	-webkit-animation: mouseScroll 0.8s cubic-bezier(0.7, 0, 0.3, 1)
+		infinite alternate;
+	animation: mouseScroll 0.8s cubic-bezier(0.7, 0, 0.3, 1) infinite
+		alternate;
+	z-index: 2;
+}
+.mouse .rollshadow {
+	position: absolute;
+	top: 8px;
+	left: 50%;
+	width: 4px;
+	margin-left: -2px;
+	height: 4px;
+	background: #aaa;
+	border-radius: 4px;
+	-webkit-animation: mouseScroll 0.8s cubic-bezier(0.7, 0, 0.3, 1)
+		infinite alternate;
+	animation: mouseScroll 0.8s cubic-bezier(0.7, 0, 0.3, 1) infinite
+		alternate;
+	animation-delay: 0s;
+	-webkit-animation-delay: 80ms;
+	animation-delay: 80ms;
+	z-index: 1;
+}
+
+@keyframes mouseScroll {
+	0% {
+		-webkit-transform: translateY(0);
+		transform: translateY(0);
+	}
+	100% {
+		-webkit-transform: translateY(14px);
+		transform: translateY(14px);
+	}
+}
+
+/* fin du headers et ses enfants */
+
+/* ------- */
+
+/* about et ses enfants*/
+.about {
+	margin: 400px 0 250px;
+}
+
+.about a {
+	/* color: #000101; */
+	border-bottom: 2px solid #000101;
+	padding-bottom: 2px;
+}
+
+about a:hover {
+	transform: scale(1.04);
+	/* color: #d9d9d9; */
+}
+
+.img1 {
+	background: url(../img/img-1.gif)
+		top/cover;
+}
+
+.h2-wrapper {
+	mix-blend-mode: exclusion;
+	margin: -220px 0 200px;
+}
+
+.about p {
+	width: 80%;
+	min-width: 280px;
+	text-align: justify;
+	margin: 0 auto;
+	line-height: calc(7px + 4.5vw);
+	font-size: calc(1rem + 1vw);
+	letter-spacing: 1px;
+	text-transform: lowercase;
+}
+
+.about a {
+	color: #000101;
+}
+
+/* fin de .about et ses enfants*/
+
+/* ------- */
+
+/* .skills (tecnologies) et ses enfants*/
+.skills {
+	margin: 200px 0 250px;
+}
+
+.skills h2 {
+	margin-bottom: 150px;
+}
+
+.skills .wrapper {
+	margin: 30px 0;
+}
+
+.skills .appear {
+	text-align: center;
+	transition: 0.6s;
+}
+
+.skills p {
+	font-size: calc(1rem + 6vw);
+	font-family: "Silkscreen", cursive;
+	background: #000101;
+	background: transparent;
+	color: #fefeff;
+	display: inline-block;
+	padding: 0 12px 12px 12px;
+	text-shadow: 4px 3px 0 #8a82dc, -14px 7px 0 #8368c5ad;
+}
+
+.skills p i {
+	text-shadow: none;
+}
+
+.skills p progress {
+	width: calc(6rem + 30vw);
+	height: 40px;
+	border-radius: 0;
+	background-color: #7067d0;
+}
+.skills p progress::-webkit-progress-value {
+	background: #7067d0;
+}
+.skills p progress::-webkit-progress-bar {
+	background: #fefeff;
+}
+
+.skills p .fa-brands.fa-html5 {
+	color: #e88b09;
+}
+
+.skills p .fa-brands.fa-css3-alt {
+	color: #44a3f7;
+}
+
+.skills p .fa-brands.fa-square-js {
+	color: #fbff17;
+}
+
+.skills p .fa-brands.fa-react {
+	color: #5a9fdc;
+}
+
+.skills p .fa-brands.fa-php {
+	color: #614d78;
+}
+
+/* fin .skills (tecnologies) et ses enfants*/
+
+/* ------- */
+
+/* .portfolio (section des projets) et ses enfants*/
+
+.portfolio {
+	margin: 200px 0;
+	text-transform: lowercase;
+}
+.project-container {
+	margin-top: 100px;
+	text-transform: lowercase;
+}
+.project {
+	position: relative;
+	width: 60vw;
+	max-width: 600px;
+	margin: 50px 5vw;
+}
+
+.title span {
+	font-size: calc(2rem + 4vw);
+}
+
+.project img {
+	transition: 0.4s ease-out;
+	width: 100%;
+}
+#p1 {
+	overflow: hidden;
+	box-shadow: 1ch 1ch rgb(146, 21, 213),
+		1ch 1ch 0 2px rgb(157, 60, 201), 1ch 1ch rgb(145, 117, 160),
+		1ch 1ch 0 2px rgb(157, 60, 201);
+}
+
+#p2 {
+	margin: 0 6vw 0 auto;
+	overflow: hidden;
+	box-shadow: 1ch 1ch rgb(146, 21, 213),
+		1ch 1ch 0 2px rgb(157, 60, 201), 1ch 1ch rgb(145, 117, 160),
+		1ch 1ch 0 2px rgb(157, 60, 201);
+}
+
+#p3 {
+	margin-left: 8vw;
+	box-shadow: 1ch 1ch rgb(146, 21, 213),
+		1ch 1ch 0 2px rgb(157, 60, 201), 1ch 1ch rgb(145, 117, 160),
+		1ch 1ch 0 2px rgb(157, 60, 201);
+}
+.project:hover img {
+	filter: brightness(20%);
+}
+.project:hover .project-infos {
+	opacity: 1;
+	transform: translate(0, -50%);
+}
+
+.project-infos {
+	position: absolute;
+	top: 50%;
+	transform: translate(-50px, -50%);
+	margin-left: 8vw;
+	transition: 0.4s ease-out;
+	opacity: 0;
+}
+
+.project-infos a {
+	font-size: calc(1rem + 3vw);
+}
+
+.project-infos p {
+	font-size: 2rem;
+	margin: 1.5vw;
+	color: #fefeff;
+}
+/* fin .portfolio (section des projets) et ses enfants*/
+
+/* ------- */
+
+/* footer et ses enfants */
+
+footer {
+	margin: 150px 0 120px 0;
+	height: 1200px;
+	/* height: fit-content; */
+}
+
+footer p {
+	font-size: calc(1rem + 2vw);
+	margin: 25px 0;
+	text-align: center;
+}
+
+footer a {
+	font-family: "mario";
+	/* color: #fefeff; */
+	font-size: calc(1rem + 2vw);
+	border-bottom: 2px #fefeff solid;
+}
+
+footer a i {
+	font-size: calc(1rem + 1vw);
+}
+
+/* footer a::after {
+	content: "";
+	position: absolute;
+	width: 100%;
+	background: #fefeff;
+	height: 1px;
+	bottom: -4px;
+	left: 0;
+	transform-origin: left;
+	/* pour l'origine de trasnformatione d l'animation pour 
+    que le soulignement se face sur la gauche 
+} */
+
+footer a:hover {
+	transform: scale(1.04);
+	/* color: #fefeff; */
+}
+
+.img2 {
+	width: 100vw;
+	background: url(../img/img-2.gif) center;
+	background-size: cover;
+}
+
+.footer .bottom {
+	height: 100px;
+	width: 10px;
+}
+
+/* responsive */
+
+
